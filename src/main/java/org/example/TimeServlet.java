@@ -59,18 +59,27 @@ public class TimeServlet extends HttpServlet {
     }
 
     private String isThereACookie(HttpServletRequest req) {
-        String timeZone = "UTC";
         Cookie[] cookies = req.getCookies();
-        if (cookies == null) {
-            return timeZone;
-        } else {
+        if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("lastTimezone")) {
-                    timeZone = cookie.getValue();
-                    break;
+                    return cookie.getValue();
                 }
             }
-            return timeZone;
         }
+        return null;
+//        String timeZone = "UTC";
+//        Cookie[] cookies = req.getCookies();
+//        if (cookies == null) {
+//            return timeZone;
+//        } else {
+//            for (Cookie cookie : cookies) {
+//                if (cookie.getName().equals("lastTimezone")) {
+//                    timeZone = cookie.getValue();
+//                    break;
+//                }
+//            }
+//            return timeZone;
+//        }
     }
 }
